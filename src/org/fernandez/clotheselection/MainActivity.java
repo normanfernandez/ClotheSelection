@@ -1,6 +1,8 @@
 package org.fernandez.clotheselection;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.AvoidXfermode;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -23,11 +25,16 @@ public class MainActivity extends Activity {
       login = (Button)findViewById(R.id.button1);
    }
 
+   public void skip(View view){
+	   Intent in = new Intent(MainActivity.this, TopBottomActivity.class);
+	   startActivity(in);
+   }
    public void login(View view){
       if(username.getText().toString().equalsIgnoreCase("fdolivares") && 
-      password.getText().toString().equals("felixdob92")){
-      Toast.makeText(getApplicationContext(), "Redirecting...", 
-      Toast.LENGTH_SHORT).show();
+      password.getText().toString().equals("felixdob92"))
+      {
+    	  Intent in = new Intent(MainActivity.this, TopBottomActivity.class);
+    	  startActivity(in);
    }	
    else{
       Toast.makeText(getApplicationContext(), "Wrong Credentials",
