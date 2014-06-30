@@ -1,21 +1,36 @@
 package org.fernandez.clotheselection;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.view.Window;
+import android.widget.Toast;
 
 public class TopBottomActivity extends ActionBarActivity {
 
+	public void top(View view){
+		Intent in = new Intent(TopBottomActivity.this, TopActivity.class);
+		TopBottomActivity.this.startActivity(in);
+	}
+	
+	public void bot(View view){
+		Intent in = new Intent(TopBottomActivity.this, BottomActivity.class);
+		TopBottomActivity.this.startActivity(in);
+	}
+	public void goBack(View view){
+		finish();
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_top_bottom);
 
 		if (savedInstanceState == null) {

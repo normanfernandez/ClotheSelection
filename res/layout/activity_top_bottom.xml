@@ -4,5 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="org.fernandez.clotheselection.TopBottomActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" 
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/ic_top"
+            android:minHeight="120dip"
+            android:minWidth="120dip"
+            android:onClick="top" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageButton1"
+            android:layout_below="@+id/imageButton1"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/ic_bottom"
+            android:minHeight="120dip"
+            android:minWidth="120dip"
+            android:onClick="bot" />
+    </RelativeLayout>
+
+</FrameLayout>
 
