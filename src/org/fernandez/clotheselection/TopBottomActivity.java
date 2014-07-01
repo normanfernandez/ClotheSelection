@@ -2,18 +2,42 @@ package org.fernandez.clotheselection;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract.StatusUpdates;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class TopBottomActivity extends ActionBarActivity {
 
+	final Button btButton = (Button)findViewById(R.id.button1);
+	BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+	
+	public void bluetoothConnect(View view){
+		
+	}
+	
+	public void bluetoothInfo(View view){	
+		if(btAdapter.isEnabled()){
+			String name = btAdapter.getName();
+			String address =  btAdapter.getAddress();
+			String status = name + " : " + address;
+			Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
+		}
+		else{
+			Toast.makeText(this, "Bluetooth is off", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
 	public void top(View view){
 		Intent in = new Intent(TopBottomActivity.this, TopActivity.class);
 		TopBottomActivity.this.startActivity(in);
@@ -32,7 +56,7 @@ public class TopBottomActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_top_bottom);
-
+		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();

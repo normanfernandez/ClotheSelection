@@ -16,21 +16,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="58dp"
-            android:layout_marginLeft="22dp"
+            android:layout_alignLeft="@id/imageView1"
+            android:layout_marginBottom="22dp"
             android:onClick="goBack"
             android:text="Back" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button1"
-            android:layout_alignBottom="@+id/button1"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="34dp"
-            android:text="Search" />
 
         <ImageView
             android:id="@+id/imageView1"
@@ -42,6 +31,15 @@
             android:minHeight="200dip"
             android:minWidth="200dip"
             android:src="@drawable/ic_shirt" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button1"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_alignRight="@+id/imageView1"
+            android:text="Search" />
 
     </RelativeLayout>
 
