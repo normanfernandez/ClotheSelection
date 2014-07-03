@@ -18,6 +18,7 @@ import android.os.Build;
 
 public class TopActivity extends AbstractPosition {
 
+	private int pos = 1; 
 	private Button btSearch = null;
 	
     @Override

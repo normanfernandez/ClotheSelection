@@ -7,34 +7,40 @@
     tools:ignore="MergeRootFrame" 
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:weightSum="2" >
 
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/ic_top"
-            android:minHeight="220dip"
-            android:minWidth="220dip"
-            android:onClick="top" />
+       <ImageButton
+           android:id="@+id/imageButton1"
+           android:layout_width="match_parent"
+           android:layout_height="fill_parent"
+           android:layout_weight="1"
+           android:adjustViewBounds="false"
+           android:background="#558ED5"
+           android:minHeight="300dip"
+           android:minWidth="300dip"
+           android:onClick="top"
+           android:scaleType="fitCenter"
+           android:src="@drawable/ic_top" />
+        
+       <ImageButton
+           android:id="@+id/imageButton2"
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"
+           android:layout_weight="1"
+           android:background="#FF0000"
+           android:maxHeight="@dimen/abc_action_button_min_width"
+           android:maxWidth="@dimen/abc_action_bar_default_height"
+           android:minHeight="300dip"
+           android:minWidth="300dip"
+           android:onClick="bot"
+           android:scaleType="fitCenter"
+           android:src="@drawable/ic_bottom" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/imageButton1"
-            android:layout_below="@+id/imageButton1"
-            android:background="@drawable/ic_bottom"
-            android:minHeight="220dip"
-            android:minWidth="220dip"
-            android:onClick="bot" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>
 
