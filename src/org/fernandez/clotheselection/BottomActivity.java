@@ -3,6 +3,7 @@ package org.fernandez.clotheselection;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.bluetooth.BluetoothAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,24 +11,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.os.Build;
 
-public class BottomActivity extends ActionBarActivity {
+public class BottomActivity extends AbstractPosition {
 
-	public void goBack(View view){
-		finish();
-	}
+	private Button btSearch = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_bottom);
-
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		this.btAdapter = BluetoothAdapter.getDefaultAdapter();
+		btSearch = (Button)this.findViewById(R.id.btSearch);
+		btSearch.setEnabled(this.btAdapter.isEnabled());
 	}
 
 	@Override

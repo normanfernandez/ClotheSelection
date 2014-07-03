@@ -19,8 +19,7 @@ import android.widget.Toast;
 
 public class TopBottomActivity extends ActionBarActivity {
 
-	final Button btButton = (Button)findViewById(R.id.button1);
-	BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+	static BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 	
 	public void bluetoothConnect(View view){
 		
@@ -47,14 +46,11 @@ public class TopBottomActivity extends ActionBarActivity {
 		Intent in = new Intent(TopBottomActivity.this, BottomActivity.class);
 		TopBottomActivity.this.startActivity(in);
 	}
-	public void goBack(View view){
-		finish();
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_top_bottom);
 		
 		if (savedInstanceState == null) {
@@ -65,7 +61,6 @@ public class TopBottomActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.top_bottom, menu);
 		return true;

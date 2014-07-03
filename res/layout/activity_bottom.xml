@@ -24,22 +24,12 @@
             android:src="@drawable/ic_panty" />
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
+            android:id="@+id/btSearch"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/imageView1"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="22dp"
-            android:onClick="goBack"
-            android:text="Back" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button1"
-            android:layout_alignBottom="@+id/button1"
-            android:layout_alignRight="@+id/imageView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
             android:text="Search" />
 
     </RelativeLayout>
