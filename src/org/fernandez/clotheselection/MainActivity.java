@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,7 +12,6 @@ public class MainActivity extends Activity {
 
    private EditText  username=null;
    private EditText  password=null;
-   private Button login = null;
    int counter = 3;
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +19,6 @@ public class MainActivity extends Activity {
       setContentView(R.layout.activity_main);
       username = (EditText)findViewById(R.id.editText1);
       password = (EditText)findViewById(R.id.editText2);
-      login = (Button)findViewById(R.id.button1);
    }
 
    public void skip(View view){

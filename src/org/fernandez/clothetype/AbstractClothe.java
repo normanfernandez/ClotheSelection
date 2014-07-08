@@ -14,7 +14,7 @@ public abstract class AbstractClothe {
 		return this.selected;
 	}
 	
-	void setSelected(boolean sel){
+	public void setSelected(boolean sel){
 		this.selected = sel;
 	}
 }

@@ -1,10 +1,6 @@
 package org.fernandez.clotheselection;
 
 import org.fernandez.clothetype.BottomClothe;
-import org.fernandez.clothetype.TopClothe;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.bluetooth.BluetoothAdapter;
 import android.os.Bundle;
@@ -15,16 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.os.Build;
 
-public class BottomActivity extends AbstractPosition {
-
-	public BottomClothe [] bottom = new BottomClothe[20];
+public class BottomActivity extends AbstractPosition implements SwipeInterface{
 	
-	private void initialize(){
+	protected void initialize(){
 		for(int i = 0; i < 20; i++)
-			bottom[i] = new BottomClothe();
+			this.clothe[i] = new BottomClothe();
+	}
+	
+	protected void updateTextView() {
+		posText.setText( (arrayPosition + 1) + "/20 pantalon \"" + this.clothe[arrayPosition].name + "\" " + 
+				(this.clothe[arrayPosition].isSelected() ? "OK" : "NOPE!") );
+		
 	}
 	
 	@Override
@@ -37,6 +37,12 @@ public class BottomActivity extends AbstractPosition {
 		btSearch = (Button)this.findViewById(R.id.btSearch);
 		posText = (TextView)this.findViewById(R.id.botPosText);
 		btSearch.setEnabled(this.btAdapter.isEnabled());
+		this.arrayPosition = 0;
+		
+		ActivitySwipeDetector swipe = new ActivitySwipeDetector(this, BottomActivity.this);
+		FrameLayout swipe_layout = (FrameLayout) findViewById(R.id.container);
+		swipe_layout.setOnTouchListener(swipe);
+		
 		updateTextView();
 	}
 
@@ -75,10 +81,12 @@ public class BottomActivity extends AbstractPosition {
 	}
 
 	@Override
-	protected void updateTextView() {
-		posText.setText( (arrayPosition + 1) + "/20 camisa \"" + bottom[arrayPosition].name + "\" " + 
-				(bottom[arrayPosition].isSelected() ? "OK" : "NOPE!") );
-		
+	public void onLeftToRight(View v) {
+		this.scrollLeft();
 	}
 
+	@Override
+	public void onRightToLeft(View v) {
+		this.scrollRight();
+	}
 }

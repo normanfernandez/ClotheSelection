@@ -3,33 +3,20 @@ package org.fernandez.clotheselection;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.bluetooth.BluetoothAdapter;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract.StatusUpdates;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.Toast;
 
 public class TopBottomActivity extends ActionBarActivity {
 
 	static BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 	
-	/*
-	public TopClothe[] getTop() {
-		return top;
-	}
-
-	public BottomClothe[] getBottom() {
-		return bottom;
-	}*/
-
 	public void bluetoothInfo(View view){	
 		if(btAdapter.isEnabled()){
 			String name = btAdapter.getName();
