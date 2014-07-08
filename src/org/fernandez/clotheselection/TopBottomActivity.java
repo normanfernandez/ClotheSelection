@@ -21,10 +21,15 @@ public class TopBottomActivity extends ActionBarActivity {
 
 	static BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 	
-	public void bluetoothConnect(View view){
-		
+	/*
+	public TopClothe[] getTop() {
+		return top;
 	}
-	
+
+	public BottomClothe[] getBottom() {
+		return bottom;
+	}*/
+
 	public void bluetoothInfo(View view){	
 		if(btAdapter.isEnabled()){
 			String name = btAdapter.getName();
@@ -57,6 +62,7 @@ public class TopBottomActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		//top[0].name = "pony";
 	}
 
 	@Override

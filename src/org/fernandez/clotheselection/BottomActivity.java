@@ -1,5 +1,8 @@
 package org.fernandez.clotheselection;
 
+import org.fernandez.clothetype.BottomClothe;
+import org.fernandez.clothetype.TopClothe;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -12,11 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 import android.os.Build;
 
 public class BottomActivity extends AbstractPosition {
 
-	private Button btSearch = null;
+	public BottomClothe [] bottom = new BottomClothe[20];
+	
+	private void initialize(){
+		for(int i = 0; i < 20; i++)
+			bottom[i] = new BottomClothe();
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +33,11 @@ public class BottomActivity extends AbstractPosition {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_bottom);
 		this.btAdapter = BluetoothAdapter.getDefaultAdapter();
+		initialize();
 		btSearch = (Button)this.findViewById(R.id.btSearch);
+		posText = (TextView)this.findViewById(R.id.botPosText);
 		btSearch.setEnabled(this.btAdapter.isEnabled());
+		updateTextView();
 	}
 
 	@Override
@@ -48,9 +60,6 @@ public class BottomActivity extends AbstractPosition {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
 	public static class PlaceholderFragment extends Fragment {
 
 		public PlaceholderFragment() {
@@ -63,6 +72,13 @@ public class BottomActivity extends AbstractPosition {
 					container, false);
 			return rootView;
 		}
+	}
+
+	@Override
+	protected void updateTextView() {
+		posText.setText( (arrayPosition + 1) + "/20 camisa \"" + bottom[arrayPosition].name + "\" " + 
+				(bottom[arrayPosition].isSelected() ? "OK" : "NOPE!") );
+		
 	}
 
 }
