@@ -1,7 +1,11 @@
 package org.fernandez.clotheselection;
 
+import java.util.UUID;
+
 import org.fernandez.clothetype.TopClothe;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +15,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class TopActivity extends AbstractPosition implements SwipeInterface{
@@ -23,6 +28,17 @@ public class TopActivity extends AbstractPosition implements SwipeInterface{
 	protected void updateTextView() {
     	posText.setText( (arrayPosition + 1) + "/20 camisa \""+ clothe[arrayPosition].name + "\" " + 
 				(clothe[arrayPosition].isSelected() ? "OK" : "NOPE!") );
+	}
+	
+	public void selectClothe(View view){
+		super.selectClothe(view);
+		if(!clothe[arrayPosition].isSelected()){
+			Toast.makeText(this, "Clothe at position " + arrayPosition + " sent signal: " + (char)(arrayPosition + 65), Toast.LENGTH_SHORT).show();
+			this.clothe[arrayPosition].setSelected(true);
+		}
+		else
+			Toast.makeText(this, "Couldn't send, clothe already selected!", Toast.LENGTH_SHORT).show();
+		updateTextView();
 	}
 	
     @Override

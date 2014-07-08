@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BottomActivity extends AbstractPosition implements SwipeInterface{
 	
@@ -25,6 +26,17 @@ public class BottomActivity extends AbstractPosition implements SwipeInterface{
 		posText.setText( (arrayPosition + 1) + "/20 pantalon \"" + this.clothe[arrayPosition].name + "\" " + 
 				(this.clothe[arrayPosition].isSelected() ? "OK" : "NOPE!") );
 		
+	}
+	
+	public void selectClothe(View view){
+		super.selectClothe(view);
+		if(!clothe[arrayPosition].isSelected()){
+			Toast.makeText(this, "Panty at position " + arrayPosition + " sent signal: " + (char)(arrayPosition + 65), Toast.LENGTH_SHORT).show();
+			this.clothe[arrayPosition].setSelected(true);
+		}
+		else
+			Toast.makeText(this, "Couldn't send, clothe already selected!", Toast.LENGTH_SHORT).show();
+		updateTextView();
 	}
 	
 	@Override
