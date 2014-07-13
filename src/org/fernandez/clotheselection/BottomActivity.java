@@ -57,6 +57,7 @@ public class BottomActivity extends AbstractPosition implements SwipeInterface{
 					btSocket.connect();
 					DataOutputStream w = new DataOutputStream(btSocket.getOutputStream());
 					w.writeByte(clothe[arrayPosition].getLabel());
+					w.close();
 					btSocket.close();
 					Toast.makeText(this, "succesfull connection done!", Toast.LENGTH_SHORT).show();
 				}
