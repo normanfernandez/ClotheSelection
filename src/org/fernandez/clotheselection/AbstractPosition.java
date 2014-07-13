@@ -36,14 +36,14 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	public void scrollLeft(){
 		if(arrayPosition <= 0)
 			return;
-		this.arrayPosition--;
+		arrayPosition--;
 		updateTextView();
 	}
 	
 	public void scrollRight(){
 		if(arrayPosition >= 19)
 			return;
-		this.arrayPosition++;
+		arrayPosition++;
 		updateTextView();
 	}
 	
