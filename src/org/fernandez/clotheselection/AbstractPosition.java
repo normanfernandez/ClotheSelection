@@ -1,6 +1,10 @@
 package org.fernandez.clotheselection;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
@@ -20,6 +24,7 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	protected BluetoothAdapter btAdapter = null;
 	protected BluetoothSocket btSocket = null;
 	protected BluetoothDevice btDevice = null;
+	protected Socket s = null;
 	protected AbstractClothe [] clothe = new AbstractClothe[20];
 	protected int arrayPosition = 0;
 	protected Button btSearch = null;
@@ -45,18 +50,21 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	@SuppressLint("NewApi") public void selectClothe(View view){
 		if(this.btAdapter.isEnabled() && !this.btAdapter.isDiscovering() && !clothe[arrayPosition].isSelected()){
 			try{
+				this.btSearch.setEnabled(false);
 				Set<BluetoothDevice> bd = btAdapter.getBondedDevices();
 				for(BluetoothDevice b : bd){
 					this.btSearch.setEnabled(false);
 					Toast.makeText(this,"Establishing connection with: " + b.getName() + "\t" + b.getAddress() + "...", Toast.LENGTH_SHORT).show();
 					btSocket = b.createInsecureRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"));
 					btSocket.connect();
+					DataOutputStream w = new DataOutputStream(btSocket.getOutputStream());
+					w.writeByte(clothe[arrayPosition].getLabel());
 					btSocket.close();
 					Toast.makeText(this, "succesfull connection done!", Toast.LENGTH_SHORT).show();
 				}
 			}
 			catch(IOException ioe){
-				Toast.makeText(this, "unsuccesfull connection!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, ioe.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 			}
 			catch(Exception e){
 				Toast.makeText(this, "Fatal connection error!", Toast.LENGTH_SHORT).show();
