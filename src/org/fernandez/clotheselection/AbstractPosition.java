@@ -16,9 +16,11 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +28,12 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	protected BluetoothAdapter btAdapter = null;
 	protected BluetoothSocket btSocket = null;
 	protected BluetoothDevice btDevice = null;
-	protected Socket s = null;
-	protected AbstractClothe [] clothe = new AbstractClothe[20];
+	protected AbstractClothe [] clothe = new AbstractClothe[10];
+	protected int [] clotheImages = new int[10];
 	protected int arrayPosition = 0;
 	protected Button btSearch = null;
 	protected TextView posText = null;
+	protected ImageView imgView = null;
 
 	protected abstract void initialize();
 	protected abstract void selectClothe();
@@ -64,7 +67,7 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	}
 	
 	public void scrollRight(){
-		if(arrayPosition >= 19)
+		if(arrayPosition >= 9)
 			return;
 		arrayPosition++;
 		updateTextView();

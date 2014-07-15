@@ -25,14 +25,14 @@ import android.widget.Toast;
 public class BottomActivity extends AbstractPosition implements SwipeInterface{
 	
 	protected void initialize(){
-		for(int i = 0; i < 20; i++){
+		for(int i = 0; i < 10; i++){
 			this.clothe[i] = new BottomClothe();
 			this.clothe[i].setLabel((char)(i + 65));
 		}
 	}
 	
 	protected void updateTextView() {
-		posText.setText( (arrayPosition + 1) + "/20 pantalon \"" + this.clothe[arrayPosition].name + "\" " + 
+		posText.setText( (arrayPosition + 1) + "/10 pantalon \"" + this.clothe[arrayPosition].name + "\" " + 
 				(this.clothe[arrayPosition].isSelected() ? "SELECTED" : "NOT SELECTED!") );
 		
 	}

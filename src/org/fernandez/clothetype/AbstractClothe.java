@@ -4,10 +4,8 @@ public abstract class AbstractClothe {
 	protected boolean selected;
 	public String name;
 	private char label;
-	public final  static String NOT_AVAILABLE = "Clothe not available!";
 	
 	public AbstractClothe(){
-		this.name = "nel";
 		this.selected = false;
 	}
 	
