@@ -19,7 +19,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="30dp"
-            android:onClick="selectClothe"
+            android:onClick="sendSignal"
             android:text="Search" />
 
         <ImageView

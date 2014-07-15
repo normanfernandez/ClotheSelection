@@ -37,7 +37,7 @@ public class BottomActivity extends AbstractPosition implements SwipeInterface{
 		
 	}
 	
-	@SuppressLint("NewApi") public void selectClothe(View view){
+	@SuppressLint("NewApi") public void selectClothe(){
 		if(!this.clothe[this.arrayPosition].isSelected()){
 			if(this.btAdapter.isEnabled() && !this.btAdapter.isDiscovering() && !clothe[arrayPosition].isSelected()){
 				try{

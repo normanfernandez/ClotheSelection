@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.fernandez.clothetype.TopClothe;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -37,7 +38,7 @@ public class TopActivity extends AbstractPosition implements SwipeInterface{
 				(clothe[arrayPosition].isSelected() ? "SELECTED" : "NOT SELECTED!") );
 	}
 	
-	@SuppressLint("NewApi") public void selectClothe(View view){
+	@SuppressLint("NewApi") public void selectClothe(){
 		if(!this.clothe[this.arrayPosition].isSelected()){
 			if(this.btAdapter.isEnabled() && !this.btAdapter.isDiscovering() && !clothe[arrayPosition].isSelected()){
 				try{

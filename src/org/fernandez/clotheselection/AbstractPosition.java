@@ -11,9 +11,11 @@ import java.util.UUID;
 
 import org.fernandez.clothetype.AbstractClothe;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +33,28 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	protected TextView posText = null;
 
 	protected abstract void initialize();
+	protected abstract void selectClothe();
 	protected abstract void updateTextView();
+	
+	public void sendSignal(View view){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Are you sure you want to send the signal?");
+		builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				selectClothe();
+			}
+		});
+		builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//Do nothing!
+			}
+		});
+		builder.show();
+	}
 	
 	public void scrollLeft(){
 		if(arrayPosition <= 0)
