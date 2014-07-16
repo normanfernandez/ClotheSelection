@@ -1033,9 +1033,9 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int botPosText=0x7f050041;
+        public static final int botPosText=0x7f050040;
         public static final int btPut=0x7f05003e;
-        public static final int btSearch=0x7f050040;
+        public static final int btSearch=0x7f05003f;
         public static final int button1=0x7f050046;
         public static final int checkbox=0x7f05002e;
         public static final int collapseActionView=0x7f05000d;
@@ -1058,7 +1058,7 @@ containing a value of this type.
         public static final int image1=0x7f050029;
         public static final int imageButton1=0x7f050048;
         public static final int imageButton2=0x7f050049;
-        public static final int imageView1=0x7f05003f;
+        public static final int imageView1=0x7f050041;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f05002a;
         public static final int middle=0x7f050012;

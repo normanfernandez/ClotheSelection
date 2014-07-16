@@ -10,16 +10,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black_overlay" >
+        android:background="@color/black_overlay"
+        android:gravity="top" >
 
         <Button
             android:id="@+id/btPut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/btSearch"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/imageView1"
-            android:layout_marginTop="36dp"
+            android:layout_marginBottom="32dp"
             android:onClick="putClothe"
             android:text="Put" />
         
@@ -29,27 +30,30 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="30dp"
             android:onClick="selectClothe"
             android:text="Search" />
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:minHeight="260dp"
-            android:minWidth="260dp"
-            android:src="@drawable/ic_panty" />
 
         <TextView
             android:id="@+id/botPosText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView1"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
             android:text="TextView" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:minHeight="260dip"
+            android:minWidth="260dip"
+            android:adjustViewBounds="true" 
+            />
 
     </RelativeLayout>
 

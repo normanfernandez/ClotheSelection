@@ -270,9 +270,9 @@ int id action_settings 0x7f05004a
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id beginning 0x7f050011
-int id botPosText 0x7f050041
+int id botPosText 0x7f050040
 int id btPut 0x7f05003e
-int id btSearch 0x7f050040
+int id btSearch 0x7f05003f
 int id button1 0x7f050046
 int id checkbox 0x7f05002e
 int id collapseActionView 0x7f05000d
@@ -295,7 +295,7 @@ int id image 0x7f050027
 int id image1 0x7f050029
 int id imageButton1 0x7f050048
 int id imageButton2 0x7f050049
-int id imageView1 0x7f05003f
+int id imageView1 0x7f050041
 int id listMode 0x7f050001
 int id list_item 0x7f05002a
 int id middle 0x7f050012
