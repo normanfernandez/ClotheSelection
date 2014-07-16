@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,45 +30,21 @@ public class BottomActivity extends AbstractPosition implements SwipeInterface{
 			this.clothe[i] = new BottomClothe();
 			this.clothe[i].setLabel((char)(i + 65));
 		}
+		this.clotheImages[0] = R.drawable.ic_bottom01;
+		this.clotheImages[1] = R.drawable.ic_bottom02;
+		this.clotheImages[2] = R.drawable.ic_bottom03;
+		this.clotheImages[3] = R.drawable.ic_bottom04;
+		this.clotheImages[4] = R.drawable.ic_bottom05;
+		this.clotheImages[5] = R.drawable.ic_bottom06;
+		this.clotheImages[6] = R.drawable.ic_bottom07;
+		this.clotheImages[7] = R.drawable.ic_bottom08;
+		this.clotheImages[8] = R.drawable.ic_bottom09;
+		this.clotheImages[9] = R.drawable.ic_bottom10;
 	}
 	
 	protected void updateTextView() {
-		posText.setText( (arrayPosition + 1) + "/10 pantalon \"" + this.clothe[arrayPosition].name + "\" " + 
-				(this.clothe[arrayPosition].isSelected() ? "SELECTED" : "NOT SELECTED!") );
-		
-	}
-	
-	@SuppressLint("NewApi") public void selectClothe(){
-		if(!this.clothe[this.arrayPosition].isSelected()){
-			if(this.btAdapter.isEnabled() && !this.btAdapter.isDiscovering() && !clothe[arrayPosition].isSelected()){
-				try{
-					Set<BluetoothDevice> bd = btAdapter.getBondedDevices();
-					for(BluetoothDevice b : bd){
-						Toast.makeText(this,"Signal: " + this.clothe[arrayPosition].getLabel() + "- Establishing connection with: " 
-								+ b.getName() + "\t" + b.getAddress() + "...", Toast.LENGTH_SHORT).show();
-						btSocket = b.createInsecureRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"));
-						btSocket.connect();
-						DataOutputStream w = new DataOutputStream(btSocket.getOutputStream());
-						w.writeByte(this.clothe[this.arrayPosition].getLabel());
-						w.close();
-						btSocket.close();
-						Toast.makeText(this, "succesfull connection done!", Toast.LENGTH_SHORT).show();
-					}
-				}
-				catch(IOException ioe){
-					Toast.makeText(this, ioe.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-				}
-				catch(Exception e){
-					Toast.makeText(this, "Fatal connection error!", Toast.LENGTH_SHORT).show();
-				}
-				finally{
-					this.clothe[arrayPosition].setSelected(true);
-					updateTextView();
-				}
-			}
-		}
-		else
-			Toast.makeText(this, "Couldn't send, clothe already selected!", Toast.LENGTH_SHORT).show();
+		posText.setText( (arrayPosition + 1) + "/10 pantalon");
+		this.imgView.setImageResource(clotheImages[arrayPosition]);
 	}
 	
 	@Override
@@ -79,6 +56,7 @@ public class BottomActivity extends AbstractPosition implements SwipeInterface{
 		initialize();
 		btSearch = (Button)this.findViewById(R.id.btSearch);
 		posText = (TextView)this.findViewById(R.id.botPosText);
+		imgView = (ImageView)this.findViewById(R.id.imageView1);
 		btSearch.setEnabled(this.btAdapter.isEnabled());
 		this.arrayPosition = 0;
 		

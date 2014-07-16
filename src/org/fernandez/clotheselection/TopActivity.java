@@ -48,41 +48,8 @@ public class TopActivity extends AbstractPosition implements SwipeInterface{
 	}
 
 	protected void updateTextView() {
-    	posText.setText( (arrayPosition + 1) + "/10 camisa \""+ clothe[arrayPosition].name + "\" " + 
-				(clothe[arrayPosition].isSelected() ? "SELECTED" : "NOT SELECTED!") );
+    	posText.setText( (arrayPosition + 1) + "/10 camisa" );
     	this.imgView.setImageResource(clotheImages[arrayPosition]);
-	}
-	
-	@SuppressLint("NewApi") public void selectClothe(){
-		if(!this.clothe[this.arrayPosition].isSelected()){
-			if(this.btAdapter.isEnabled() && !this.btAdapter.isDiscovering() && !clothe[arrayPosition].isSelected()){
-				btAdapter = BluetoothAdapter.getDefaultAdapter();
-				Set<BluetoothDevice> btSet = btAdapter.getBondedDevices();
-				Iterator<BluetoothDevice> it = btSet.iterator();
-				btDevice = it.next();
-				try{
-					btAdapter.cancelDiscovery();
-					btSocket = btDevice.createRfcommSocketToServiceRecord(SPP_UUID);
-					System.out.println("Comenzando a connectar");
-					btSocket.connect();
-					DataOutputStream out = new DataOutputStream(btSocket.getOutputStream());
-					System.out.println("Comenzando a escribir: " + this.clothe[arrayPosition].getLabel());
-					out.writeByte(this.clothe[arrayPosition].getLabel());
-					out.close();
-					btSocket.close();
-					System.out.println("Terminando de escribir");
-				}catch(IOException ioe){
-					System.out.println("Error con el socket de la z: "  + ioe.getLocalizedMessage());
-				}
-				finally{
-					this.clothe[arrayPosition].setSelected(true);
-					updateTextView();
-				}
-			}
-		}
-		else
-			Toast.makeText(this, "Couldn't send, clothe already selected!", Toast.LENGTH_SHORT).show();
-		
 	}
 	
     @Override

@@ -38,41 +38,22 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	protected static final UUID SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
 	protected abstract void initialize();
-	protected abstract void selectClothe();
 	protected abstract void updateTextView();
-	
-	public void sendSignal(View view){
+	protected void sendSignal(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Are you sure you want to send the signal?");
 		builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				selectClothe();
+				clotheImages[arrayPosition] = R.drawable.ic_selected;
+				updateTextView();
 			}
 		});
 		builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
 			
-			@SuppressLint("NewApi") @Override
 			public void onClick(DialogInterface dialog, int which) {
-				btAdapter = BluetoothAdapter.getDefaultAdapter();
-				Set<BluetoothDevice> btSet = btAdapter.getBondedDevices();
-				Iterator<BluetoothDevice> it = btSet.iterator();
-				btDevice = it.next();
-				try{
-					btAdapter.cancelDiscovery();
-					btSocket = btDevice.createRfcommSocketToServiceRecord(SPP_UUID);
-					System.out.println("Comenzando a connectar");
-					btSocket.connect();
-					DataOutputStream out = new DataOutputStream(btSocket.getOutputStream());
-					System.out.println("Comenzando a escribir");
-					out.writeByte('Z');
-					out.close();
-					btSocket.close();
-					System.out.println("Terminando de escribir");
-				}catch(IOException ioe){
-					System.out.println("Error con el socket de la z: "  + ioe.getLocalizedMessage());
-				}
+				
 			}
 		});
 		builder.show();
@@ -100,7 +81,7 @@ public abstract class AbstractPosition extends ActionBarActivity{
 				for(BluetoothDevice b : bd){
 					this.btSearch.setEnabled(false);
 					Toast.makeText(this,"Establishing connection with: " + b.getName() + "\t" + b.getAddress() + "...", Toast.LENGTH_SHORT).show();
-					btSocket = b.createInsecureRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"));
+					btSocket = b.createInsecureRfcommSocketToServiceRecord(SPP_UUID);
 					btSocket.connect();
 					DataOutputStream w = new DataOutputStream(btSocket.getOutputStream());
 					w.writeByte(clothe[arrayPosition].getLabel());
@@ -116,6 +97,8 @@ public abstract class AbstractPosition extends ActionBarActivity{
 			}
 			finally{
 				this.btSearch.setEnabled(true);
+				updateTextView();
+				this.sendSignal();
 			}
 		}
 	}

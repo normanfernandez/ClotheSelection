@@ -19,7 +19,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="30dp"
-            android:onClick="sendSignal"
+            android:onClick="selectClothe"
             android:text="Search" />
 
         <TextView
@@ -38,8 +38,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:minHeight="200dip"
-            android:minWidth="200dip"
+            android:minHeight="260dip"
+            android:minWidth="260dip"
             android:src="@drawable/ic_shirt" />
 
     </RelativeLayout>

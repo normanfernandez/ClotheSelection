@@ -19,7 +19,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="32dp"
-            android:onClick="sendSignal"
+            android:onClick="selectClothe"
             android:text="Search" />
 
         <ImageView
@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:minHeight="200dp"
-            android:minWidth="200dp"
+            android:minHeight="260dp"
+            android:minWidth="260dp"
             android:src="@drawable/ic_panty" />
 
         <TextView
