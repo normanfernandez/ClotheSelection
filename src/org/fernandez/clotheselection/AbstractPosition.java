@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,6 +35,7 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	protected Button btSearch = null;
 	protected TextView posText = null;
 	protected ImageView imgView = null;
+	protected static final UUID SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
 	protected abstract void initialize();
 	protected abstract void selectClothe();
@@ -51,9 +53,26 @@ public abstract class AbstractPosition extends ActionBarActivity{
 		});
 		builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
 			
-			@Override
+			@SuppressLint("NewApi") @Override
 			public void onClick(DialogInterface dialog, int which) {
-				//Do nothing!
+				btAdapter = BluetoothAdapter.getDefaultAdapter();
+				Set<BluetoothDevice> btSet = btAdapter.getBondedDevices();
+				Iterator<BluetoothDevice> it = btSet.iterator();
+				btDevice = it.next();
+				try{
+					btAdapter.cancelDiscovery();
+					btSocket = btDevice.createRfcommSocketToServiceRecord(SPP_UUID);
+					System.out.println("Comenzando a connectar");
+					btSocket.connect();
+					DataOutputStream out = new DataOutputStream(btSocket.getOutputStream());
+					System.out.println("Comenzando a escribir");
+					out.writeByte('Z');
+					out.close();
+					btSocket.close();
+					System.out.println("Terminando de escribir");
+				}catch(IOException ioe){
+					System.out.println("Error con el socket de la z: "  + ioe.getLocalizedMessage());
+				}
 			}
 		});
 		builder.show();

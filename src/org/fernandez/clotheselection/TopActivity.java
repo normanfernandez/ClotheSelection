@@ -3,6 +3,7 @@ package org.fernandez.clotheselection;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
@@ -55,25 +56,23 @@ public class TopActivity extends AbstractPosition implements SwipeInterface{
 	@SuppressLint("NewApi") public void selectClothe(){
 		if(!this.clothe[this.arrayPosition].isSelected()){
 			if(this.btAdapter.isEnabled() && !this.btAdapter.isDiscovering() && !clothe[arrayPosition].isSelected()){
+				btAdapter = BluetoothAdapter.getDefaultAdapter();
+				Set<BluetoothDevice> btSet = btAdapter.getBondedDevices();
+				Iterator<BluetoothDevice> it = btSet.iterator();
+				btDevice = it.next();
 				try{
-					Set<BluetoothDevice> bd = btAdapter.getBondedDevices();
-					for(BluetoothDevice b : bd){
-						Toast.makeText(this,"Signal: " + this.clothe[arrayPosition].getLabel() + "- Establishing connection with: " 
-								+ b.getName() + "\t" + b.getAddress() + "...", Toast.LENGTH_SHORT).show();
-						btSocket = b.createInsecureRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"));
-						btSocket.connect();
-						DataOutputStream w = new DataOutputStream(btSocket.getOutputStream());
-						w.writeByte(this.clothe[this.arrayPosition].getLabel());
-						w.close();
-						btSocket.close();
-						Toast.makeText(this, "succesfull connection done!", Toast.LENGTH_SHORT).show();
-					}
-				}
-				catch(IOException ioe){
-					Toast.makeText(this, ioe.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-				}
-				catch(Exception e){
-					Toast.makeText(this, "Fatal connection error!", Toast.LENGTH_SHORT).show();
+					btAdapter.cancelDiscovery();
+					btSocket = btDevice.createRfcommSocketToServiceRecord(SPP_UUID);
+					System.out.println("Comenzando a connectar");
+					btSocket.connect();
+					DataOutputStream out = new DataOutputStream(btSocket.getOutputStream());
+					System.out.println("Comenzando a escribir: " + this.clothe[arrayPosition].getLabel());
+					out.writeByte(this.clothe[arrayPosition].getLabel());
+					out.close();
+					btSocket.close();
+					System.out.println("Terminando de escribir");
+				}catch(IOException ioe){
+					System.out.println("Error con el socket de la z: "  + ioe.getLocalizedMessage());
 				}
 				finally{
 					this.clothe[arrayPosition].setSelected(true);
