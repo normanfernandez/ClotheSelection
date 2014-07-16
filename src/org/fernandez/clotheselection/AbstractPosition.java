@@ -31,14 +31,17 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	protected BluetoothDevice btDevice = null;
 	protected AbstractClothe [] clothe = new AbstractClothe[10];
 	protected int [] clotheImages = new int[10];
+	protected int [] clotheImagesCopy = new int[10];
 	protected int arrayPosition = 0;
 	protected Button btSearch = null;
+	protected Button btPut = null;
 	protected TextView posText = null;
 	protected ImageView imgView = null;
 	protected static final UUID SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
 	protected abstract void initialize();
 	protected abstract void updateTextView();
+	
 	protected void sendSignal(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Are you sure you want to send the signal?");
@@ -47,6 +50,7 @@ public abstract class AbstractPosition extends ActionBarActivity{
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				clotheImages[arrayPosition] = R.drawable.ic_selected;
+				clothe[arrayPosition].setSelected(true);
 				updateTextView();
 			}
 		});
@@ -70,6 +74,12 @@ public abstract class AbstractPosition extends ActionBarActivity{
 		if(arrayPosition >= 9)
 			return;
 		arrayPosition++;
+		updateTextView();
+	}
+	
+	public void putClothe(View view){
+		this.clothe[arrayPosition].setSelected(false);
+		this.clotheImages[arrayPosition] = this.clotheImagesCopy[arrayPosition];
 		updateTextView();
 	}
 	

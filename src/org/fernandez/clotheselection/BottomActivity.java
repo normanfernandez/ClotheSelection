@@ -40,11 +40,15 @@ public class BottomActivity extends AbstractPosition implements SwipeInterface{
 		this.clotheImages[7] = R.drawable.ic_bottom08;
 		this.clotheImages[8] = R.drawable.ic_bottom09;
 		this.clotheImages[9] = R.drawable.ic_bottom10;
+		for(int i = 0; i < 10; i++)
+			clotheImagesCopy[i] = clotheImages[i];
 	}
 	
 	protected void updateTextView() {
 		posText.setText( (arrayPosition + 1) + "/10 pantalon");
 		this.imgView.setImageResource(clotheImages[arrayPosition]);
+		this.btSearch.setEnabled(!clothe[arrayPosition].isSelected());
+		this.btPut.setEnabled(clothe[arrayPosition].isSelected());
 	}
 	
 	@Override
@@ -53,12 +57,14 @@ public class BottomActivity extends AbstractPosition implements SwipeInterface{
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_bottom);
 		this.btAdapter = BluetoothAdapter.getDefaultAdapter();
-		initialize();
 		btSearch = (Button)this.findViewById(R.id.btSearch);
+		btPut = (Button)this.findViewById(R.id.btPut);
 		posText = (TextView)this.findViewById(R.id.botPosText);
 		imgView = (ImageView)this.findViewById(R.id.imageView1);
 		btSearch.setEnabled(this.btAdapter.isEnabled());
+		btPut.setEnabled(!this.btAdapter.isEnabled());
 		this.arrayPosition = 0;
+		initialize();
 		
 		ActivitySwipeDetector swipe = new ActivitySwipeDetector(this, BottomActivity.this);
 		FrameLayout swipe_layout = (FrameLayout) findViewById(R.id.container);
