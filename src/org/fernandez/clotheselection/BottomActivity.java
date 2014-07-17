@@ -1,15 +1,8 @@
 package org.fernandez.clotheselection;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.Set;
-import java.util.UUID;
-
 import org.fernandez.clothetype.BottomClothe;
 import android.support.v4.app.Fragment;
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +14,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class BottomActivity extends AbstractPosition implements SwipeInterface{
 	
