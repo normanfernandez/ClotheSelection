@@ -2,14 +2,8 @@ package org.fernandez.clotheselection;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
-
 import org.fernandez.clothetype.AbstractClothe;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -17,7 +11,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +41,7 @@ public abstract class AbstractPosition extends ActionBarActivity{
 	
 	protected void sendDialog(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Are you sure you want to send the signal?");
+		builder.setMessage("Are you sure you want this clothe?");
 		builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
 			
 			@Override
